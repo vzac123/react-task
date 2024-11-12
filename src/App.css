@@ -1,0 +1,4 @@
+.shadow-box {
+  box-shadow: rgba(255, 255, 255, 0.15) 0px 15px 25px,
+    rgba(255, 255, 255, 0.05) 0px 5px 10px;
+}

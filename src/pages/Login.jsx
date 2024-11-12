@@ -32,8 +32,8 @@ const Login = () => {
       return;
     }
 
-    if (password.length < 8) {
-      toast.error('Password must be at least 8 characters');
+    if (password.length < 6) {
+      toast.error('Password must be at least 6 characters');
       return;
     }
 
@@ -42,13 +42,16 @@ const Login = () => {
         email,
         password
       );
+      toast.success('Login Successful');
       console.log(response);
       dispatch(setAuthStatus(true));
       dispatch(setUser(response));
 
       navigate('/');
     } catch (err) {
-      setErr(true);
+      toast.error(err);
+
+      //   setErr(true)
     }
   };
 
@@ -73,9 +76,9 @@ const Login = () => {
             src={logo}
             alt='logo'
           />
-          <div className='absolute left-0 w-[100%]'>
+          <div className='absolute left-0 w-[100%] flex justify-center'>
             <img
-              className='min-w-[136px] mt-[44px] xs:inline sm:inline md:inline lg:inline xl:hidden'
+              className='min-w-[136px] mt-[44px] xs:inline sm:inline md:inline lg:inline xl:hidden '
               src={logo}
               alt='logo'
             />
@@ -137,12 +140,19 @@ const Login = () => {
                     </p>
                   </div>
                 </div>
+
                 <button
                   type='submit'
                   className='h-[44px] w-[100%] mt-[45px] flex items-center justify-center rounded-[6px] bg-[#275DEA] text-[16px] text-[#ffffff] leading-[24px] font-semibold'
                 >
                   Login
                 </button>
+                <p
+                  onClick={() => navigate('/signup')}
+                  className='text-[#fff] mt-[15px] cursor-pointer'
+                >
+                  Sign Up?
+                </p>
               </form>
             </div>
           </div>

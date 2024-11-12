@@ -37,8 +37,8 @@ const SignUp = () => {
       return;
     }
 
-    if (password.length < 8) {
-      toast.error('Password must be at least 8 characters');
+    if (password.length < 6) {
+      toast.error('Password must be at least 6 characters');
       return;
     }
 
@@ -65,10 +65,12 @@ const SignUp = () => {
       // Initialize userChats in Firestore (optional based on your logic)
       await setDoc(doc(db, 'userChats', response.user.uid), {});
 
+      toast.success('Sign Up Successful');
+
       navigate('/'); // Navigate to home or another page after successful signup
     } catch (err) {
+      toast.error(err);
       console.error('Signup error: ', err);
-      setErr(true); // Set error state if needed
     }
   };
 
@@ -86,7 +88,7 @@ const SignUp = () => {
             src={logo}
             alt='logo'
           />
-          <div className='absolute left-0 w-[100%]'>
+          <div className='absolute left-0 w-[100%]  flex justify-center'>
             <img
               className='min-w-[136px] mt-[44px] xs:inline sm:inline md:inline lg:inline xl:hidden'
               src={logo}
@@ -165,7 +167,7 @@ const SignUp = () => {
                         outline: '1px solid #5B5B5B',
                       }}
                       className='h-[44px] w-[100%] rounded-[6px] bg-[#080D0D] caret-white  pl-[35px] text-[#fff]'
-                      type='text'
+                      type='password'
                       placeholder='Confirm Password'
                     />
                     {/* <img
@@ -187,6 +189,12 @@ const SignUp = () => {
                 >
                   Sign Up
                 </button>
+                <p
+                  onClick={() => navigate('/login')}
+                  className='text-[#fff] mt-[15px] cursor-pointer'
+                >
+                  Login?
+                </p>
               </form>
             </div>
           </div>

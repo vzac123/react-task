@@ -5,8 +5,10 @@ import { useDispatch } from 'react-redux';
 import { setAuthStatus } from '../store/User';
 import { signOut } from 'firebase/auth';
 import { setUser } from '../store/User';
+import { useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const logout = () => {
     console.log('log');
@@ -28,9 +30,17 @@ const Homepage = () => {
         >
           Logout
         </button>
-        <p className='text-[28px] text-[#ffffff]'>
-          Welcome To Homepage
-        </p>
+        <div className='flex flex-col'>
+          <p
+            onClick={() => navigate('/posts')}
+            className='text-[24px] text-[#ffffff] cursor-pointer text-center underline'
+          >
+            <span className='text-[#275DEA]'> Posts</span> List Page
+          </p>
+          <p className='text-[28px] text-[#ffffff] mt-[20px]'>
+            Welcome To Homepage
+          </p>
+        </div>
       </div>
     </>
   );
